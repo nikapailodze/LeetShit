@@ -21,17 +21,65 @@
 
 
 
-const arr=[-3, -1, 1, 2];
-const target = 1;
+const arr=[39, -55, 11, 69, 4, -9, 6, 23];
+const target = -72;
 
 //1)sorting
 
 for(let i=0;i<arr.length;i++){
     for(let j=0;j<arr.length-1-i;j++){
-        let temp=arr[j+1];
-        arr[j+1]=arr[j]
-        arr[j]=temp;
+        if(arr[j]>arr[j+1]){
+            let temp=arr[j];
+            arr[j]=arr[j+1]
+            arr[j+1]=temp;
+        }
+        
     }
 }
 
-console.log("sorted arr",arr)
+console.log("sorted arr: ",arr)
+
+let best =-Infinity
+let triplet=[];
+
+for(let i=0;i<arr.length-2;i++){
+    
+    let left=i+1
+    let right=arr.length-1
+    
+
+    while(left<right){
+        let currSum=arr[i]+arr[left]+arr[right]
+        console.log("currsum::",currSum)
+        if(currSum==target) {console.log(currSum)
+        break}
+
+        if(Math.abs(target - currSum) < Math.abs(target - best)){
+            best=currSum
+            triplet=[arr[i],arr[left],arr[right]]
+            console.log(`iter ${i} triplet ${triplet}`)
+        }else if (Math.abs(target - currSum) === Math.abs(target - best) && currSum < best) {
+            // If the current sum is equal to the best sum in absolute value,
+            // and it's smaller, update the best sum and triplet
+            best = currSum;
+            triplet = [arr[i], arr[left], arr[right]];
+        }
+        console.log("best::",best)
+        console.log("triplet",triplet)
+
+        if(currSum<target){
+            left++
+        }else{
+            right--
+        }
+    }
+
+}
+
+console.log("triplet",triplet)
+
+console.log("best", best)
+
+// -55, -9,  4,  6,
+// 11, 23, 39, 69
+// ]
