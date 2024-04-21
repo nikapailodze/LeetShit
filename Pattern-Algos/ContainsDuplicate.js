@@ -12,12 +12,15 @@
 // Output: false
 
 const frequency={}
-
+    const nums =
+    [1,2,3];
     for(let i=0;i<nums.length;i++){
-        frequency[nums[i]]=(nums[i]||0)+1
+        frequency[nums[i]]=(frequency[nums[i]]||0)+1
+        console.log(frequency)
     }
 
     for(let key in frequency){
-        if(frequency[key]!=1) return false
+        if(frequency[key]>1) console.log (true)
+        else console.log(false)
     }
-    return true
+    
