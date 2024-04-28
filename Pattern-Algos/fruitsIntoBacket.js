@@ -20,40 +20,25 @@
 // Output: 3
 // Explanation: We can pick from trees [1,2,2].
 // If we had started at the first tree, we would only pick from trees [0,1].
+// Example 3:
+
+// Input: fruits = [1,2,3,2,2]
+// Output: 4
+// Explanation: We can pick from trees [2,3,2,2].
+// If we had started at the first tree, we would only pick from trees [1,2].
 
 
-const fruits =[0,1,2,2];
+const fruits = [0,1,2,2];
+// const limit = 2;
 
-const basket=2;
+let kruk={}
 
-// ___Solution number 1___
-
-let len=0
-
-for(let i=0;i<fruits.length;i++){
-    if(fruits[0]!=fruits[i]) break
-    else return fruits.length
+for(let key of fruits){
+    kruk[key]=true
 }
 
-for(let i=0;i<fruits.length;i++){
-    let frequency={}
-    let counter=0;
-    let right=i;
-    while(counter<=basket && right<fruits.length){
-        if(!(fruits[right] in frequency)){
-            frequency[fruits[right]]=true
-            counter++
-            
-        }else right++
-        
-        
-        if(right-i>len)len=right-i
-        console.log(frequency)        
-    }
-    
-    console.log("this is right",right-i)
-}
+console.log(kruk)
 
-console.log(len)
+console.log(Object.keys(kruk).length)
 
 
